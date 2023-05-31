@@ -18,10 +18,13 @@ public class WibyExtractor extends Extractor {
             doc = Jsoup.connect("http://wiby.me/?q=" + query + "&p=" + page).get();
             Elements links = doc.getElementsByTag("blockquote");
             for (Element res : links) {
-                if(!res.getElementsByClass("more").isEmpty()) {
+                if(!res.getElementsByClass("more").isEmpty() || !res.getElementsByClass("pin1").isEmpty()) {
                     continue;
                 }
                 Element link = res.getElementsByClass("tlink").first();
+                if(link == null) {
+                    throw new IOException("link is null");
+                }
                 String href = link.attr("href");
                 String title = link.text();
                 String desc = res.child(3).text();
@@ -32,6 +35,7 @@ public class WibyExtractor extends Extractor {
             System.out.println("Website error: ");
             e.printStackTrace();
         }
+        System.out.println("Retrieved Wiby");
         return results;
     }
 }
