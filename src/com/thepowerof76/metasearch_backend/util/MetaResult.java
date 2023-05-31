@@ -7,6 +7,7 @@ public class MetaResult extends Result {
     public MetaResult(String t, String h, String d, int id) {
         super(t, h, d, id);
         Arrays.fill(resultSrc, false);
+        resultSrc[id-1] = true;
     }
     public boolean[] getSources() {
         return resultSrc;
@@ -19,3 +20,4 @@ public class MetaResult extends Result {
         }
     }
 }
+
