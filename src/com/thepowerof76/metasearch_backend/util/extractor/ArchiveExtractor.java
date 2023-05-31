@@ -38,6 +38,9 @@ public class ArchiveExtractor extends Extractor {
                     if ("items".equals(fieldname)) {
                         jsonParser.nextToken();
                         jsonParser.nextToken();
+                        if(jsonParser.currentToken() == JsonToken.END_ARRAY) {
+                            return;
+                        }
                         while (jsonParser.nextToken() != JsonToken.END_ARRAY) {
                             href = new StringBuilder("https://archive.org/details/");
                             desc = new StringBuilder(title = new StringBuilder());
@@ -113,6 +116,7 @@ public class ArchiveExtractor extends Extractor {
         for (int i = 0; i < 10 && ((page % 10) * 10 + i < results.size()); i++) {
             tmp.add(results.get((page % 10) * 10 + i));
         }
+        System.out.println("Retrieved Archive");
         return tmp;
     }
     public ArchiveExtractor() {
@@ -121,3 +125,4 @@ public class ArchiveExtractor extends Extractor {
             currentHeldRange = new Pair<>(-1, -1);
         }
     }
+
