@@ -1,7 +1,8 @@
 package com.thepowerof76.metasearch_backend.util;
 
+import java.io.Serializable;
 import java.util.Arrays;
-public class MetaResult extends Result {
+public class MetaResult extends Result implements Serializable {
     private final boolean[] resultSrc = new boolean[6];
 
     public MetaResult(String t, String h, String d, int id) {
