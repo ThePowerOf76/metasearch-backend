@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 public class ExtractorThread implements Callable<ArrayList<Result>> {
 
-    private Extractor ex;
+    private final Extractor ex;
 
     private String q;
     private int p;
@@ -19,7 +19,7 @@ public class ExtractorThread implements Callable<ArrayList<Result>> {
     }
 
     @Override
-    public ArrayList<Result> call() throws Exception {
+    public ArrayList<Result> call() {
         return ex.searchQuery(q, p);
     }
 }
