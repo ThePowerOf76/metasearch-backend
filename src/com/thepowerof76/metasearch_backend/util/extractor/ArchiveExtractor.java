@@ -113,9 +113,37 @@ public class ArchiveExtractor extends Extractor {
             lastQuery = query;
         }
         ArrayList<Result> tmp = new ArrayList<>();
+        Result tmp_r;
+        int index, l_bound, u_bound;
         for (int i = 0; i < 10 && ((page % 10) * 10 + i < results.size()); i++) {
-            tmp.add(results.get((page % 10) * 10 + i));
+            tmp_r = results.get((page % 10) * 10 + i);
+            if(tmp_r.getDesc().length() > 50) {
+                index = tmp_r.getDesc().indexOf(query);
+                if(index == -1) {
+                    index = tmp_r.getDesc().indexOf(query.toUpperCase());
+                    if(index == -1) {
+                        index = tmp_r.getDesc().indexOf(query.substring(0, 1).toUpperCase() + query.substring(1).toLowerCase());
+                        if(index == -1) {
+                            tmp_r.setDesc(tmp_r.getDesc().substring(0, 50));
+                        } else {
+                            l_bound = Math.max(index - 22, 0);
+                            u_bound = Math.min(index + 22, tmp_r.getDesc().length());
+                            tmp_r.setDesc((l_bound == 0 ? "..." : "") + tmp_r.getDesc().substring(l_bound, u_bound) + (u_bound == tmp_r.getDesc().length() ? "..." : ""));
+                        }
+                    } else {
+                        l_bound = Math.max(index - 22, 0);
+                        u_bound = Math.min(index + 22, tmp_r.getDesc().length());
+                        tmp_r.setDesc((l_bound == 0 ? "..." : "") + tmp_r.getDesc().substring(l_bound, u_bound) + (u_bound == tmp_r.getDesc().length() ? "..." : ""));
+                    }
+                } else {
+                    l_bound = Math.max(index - 22, 0);
+                    u_bound = Math.min(index + 22, tmp_r.getDesc().length());
+                    tmp_r.setDesc((l_bound == 0 ? "..." : "") + tmp_r.getDesc().substring(l_bound, u_bound) + (u_bound == tmp_r.getDesc().length() ? "..." : ""));
+                }
+            }
+            tmp.add(tmp_r);
         }
+
         System.out.println("Retrieved Archive");
         return tmp;
     }
