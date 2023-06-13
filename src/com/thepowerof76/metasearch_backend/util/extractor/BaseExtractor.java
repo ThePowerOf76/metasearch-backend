@@ -42,6 +42,7 @@ public class BaseExtractor extends Extractor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Retrieved Base");
         return results;
     }
 }

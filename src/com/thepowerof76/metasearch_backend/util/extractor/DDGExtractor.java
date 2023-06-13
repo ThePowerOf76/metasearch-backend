@@ -43,6 +43,7 @@ public class DDGExtractor extends Extractor {
             System.out.println("Website error: ");
             e.printStackTrace();
         }
+        System.out.println("Retrieved DDG");
         return results;
     }
 }

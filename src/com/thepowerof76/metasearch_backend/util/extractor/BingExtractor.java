@@ -60,6 +60,7 @@ public class BingExtractor extends Extractor{
             System.out.println("Website error: ");
             e.printStackTrace();
         }
+        System.out.println("Retrieved Bing");
         return results;
     }
 }

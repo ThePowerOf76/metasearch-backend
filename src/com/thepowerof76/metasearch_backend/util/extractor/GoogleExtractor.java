@@ -55,6 +55,7 @@ public class GoogleExtractor extends Extractor {
             System.out.println("Website error: ");
             e.printStackTrace();
         }
+        System.out.println("Retrieved Google");
         return results;
     }
 }
