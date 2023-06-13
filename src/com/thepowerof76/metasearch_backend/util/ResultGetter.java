@@ -52,26 +52,4 @@ public class ResultGetter {
         cache.put(query+page, meta);
         return meta;
     }
-    public static void main(String[] args) {
-        ResultGetter g = new ResultGetter();
-        try {
-            ArrayList<MetaResult> m = g.search("linux", 0);
-            System.out.println(m.get(0).getTitle());
-            System.out.println(m.get(1).getTitle());
-            System.out.println(m.get(2).getTitle());
-            System.out.println("=================================================================");
-            m = g.search("linux", 1);
-            System.out.println(m.get(0).getTitle());
-            System.out.println(m.get(1).getTitle());
-            System.out.println(m.get(2).getTitle());
-            System.out.println("=================================================================");
-            m = g.search("linux", 0);
-            System.out.println(m.get(0).getTitle());
-            System.out.println(m.get(1).getTitle());
-            System.out.println(m.get(2).getTitle());
-            System.out.println("=================================================================");
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

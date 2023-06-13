@@ -3,7 +3,6 @@ package com.thepowerof76.metasearch_backend.util;
 import java.util.*;
 
 import static java.lang.Math.min;
-import com.thepowerof76.metasearch_backend.util.extractor.*;
 public class ResultMixin {
     private static final float percentageFail = 0.2f;
     private static int LevenshteinDistance(String title1, String title2) {
@@ -82,44 +81,7 @@ public class ResultMixin {
         System.out.println("Parsing Wiby");
         updateSource(metaResults, wiby, 6);
         System.out.println("Shuffling");
-        Collections.shuffle(metaResults);
+        Collections.shuffle(metaResults, new Random(81));
         return metaResults;
-    }
-    public static void main(String[] args) {
-        GoogleExtractor g = new GoogleExtractor();
-        BingExtractor b = new BingExtractor();
-        DDGExtractor d = new DDGExtractor();
-        ArchiveExtractor a = new ArchiveExtractor();
-        BaseExtractor bs = new BaseExtractor();
-        WibyExtractor w = new WibyExtractor();
-        String query = "linux";
-        System.out.println("Beginning");
-        ArrayList<MetaResult> meta = mixResults(g.searchQuery(query, 0), b.searchQuery(query, 0), d.searchQuery(query, 0), a.searchQuery(query, 0), bs.searchQuery(query, 0), w.searchQuery(query, 0));
-        for(MetaResult m: meta) {
-            System.out.println("Href: " + m.getHref());
-            System.out.println("Title: " + m.getTitle());
-            System.out.println("Desc: " + m.getDesc());
-            System.out.print("Sources: ");
-            boolean[] whatEngines = m.getSources();
-            if(whatEngines[0]) {
-                System.out.print("Google ");
-            }
-            if(whatEngines[1]) {
-                System.out.print("Bing ");
-            }
-            if(whatEngines[2]) {
-                System.out.print("DuckDuckGo ");
-            }
-            if(whatEngines[3]) {
-                System.out.print("Archive ");
-            }
-            if(whatEngines[4]) {
-                System.out.print("BaseSearch ");
-            }
-            if(whatEngines[5]) {
-                System.out.print("Wiby ");
-            }
-            System.out.println("\n\n");
-        }
     }
 }

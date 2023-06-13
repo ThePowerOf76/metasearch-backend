@@ -18,3 +18,4 @@ jcs.auxiliary.DC=org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCache
 jcs.auxiliary.DC.attributes=org.apache.commons.jcs3.auxiliary.disk.indexed.IndexedDiskCacheAttributes
 jcs.auxiliary.DC.attributes.DiskPath=/home/thevintagetyrolean/projects/java/IdeaProjects/metasearch-backend/src/cache/
 jcs.auxiliary.DC.attributes.MaxKeySize=100000
+
